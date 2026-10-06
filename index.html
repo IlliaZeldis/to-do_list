@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DateMate</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">DateMate</h1>
+            <div class="header-controls">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <div class="dropdown">
+                    <button class="dropbtn" id="language-toggle" data-current-lang="en">
+                        <span data-key="english">English</span> <span class="material-icons">arrow_drop_down</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" data-lang="uk" data-key="ukrainian">Ukrainian</a>
+                        <a href="#" data-lang="en" data-key="english-option" style="display: none;">English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <button class="add-task-button">
+                <span class="material-icons">add</span> <span data-key="addNewTask">Add New Task</span>
+            </button>
+
+            <div class="my-tasks-section">
+                <h2 data-key="myTasks">My Tasks</h2>
+                <ul id="task-list" class="task-list">
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-logo">DateMate</p>
+                <p class="tagline" data-key="tagline">Plan it. Do it. Live it.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title-container">
+                    <input type="text" class="modal-task-input" placeholder="Task">
+                </div>
+                <span class="material-icons calendar-icon" id="openCalendar">calendar_today</span>
+                
+                <span class="material-icons close-button" id="closeModalButton">close</span>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                    </label>
+                    <div class="input-line-container">
+                        <label for="taskName" class="input-label" data-key="taskNameLabel">The name of the task</label>
+                        <input type="text" id="taskName" class="input-line">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                    </label>
+                    <div class="input-line-container">
+                        <label for="taskDescription" class="input-label" data-key="taskDescriptionLabel">Describe the task</label>
+                        <input type="text" id="taskDescription" class="input-line">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox">
+                    </label>
+                    <div class="input-line-container">
+                        <label for="taskDeadline" class="input-label" data-key="taskDeadlineLabel">Deadline</label>
+                        <input type="text" id="taskDeadline" class="input-line" placeholder="Select a deadline">
+                    </div>
+                </div>
+                <button id="saveTaskButton" class="add-task-button" style="width: auto; float: right; margin-top: 20px;">
+                    <span class="material-icons">save</span> <span data-key="saveButton">Save</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

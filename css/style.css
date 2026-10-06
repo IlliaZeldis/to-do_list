@@ -1,0 +1,731 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+    --primary-bg-color: #f0f0f0;
+    --header-bg-color: #D9D9D9;
+    --card-bg-color: #D9D9D9;
+    --footer-bg-color: #A5C2CD;
+
+    --text-color: #333;
+    --light-text-color: #777;
+    --border-color: #ccc;
+    --button-bg-color: #e0e0e0;
+    --button-text-color: #333;
+    --checkbox-border: #999;
+    --logo-color: #000000;
+    --tagline-color: #000000;
+    --dropbtn-bg-color: #000000;
+    --dropbtn-text-color: white;
+    --modal-placeholder-color: #888;
+    --modal-input-color: #555;
+    --calendar-icon-color: #555;
+    --deadline-text-color: #333;
+}
+
+body.dark-theme {
+    --primary-bg-color: #1a1a1a;
+    --header-bg-color: #2b2b2b;
+    --card-bg-color: #2b2b2b;
+    --footer-bg-color: #3a3a3a;
+
+    --text-color: #e0e0e0;
+    --light-text-color: #b0b0b0;
+    --border-color: #555;
+    --button-bg-color: #444;
+    --button-text-color: #e0e0e0;
+    --checkbox-border: #aaa;
+    --logo-color: #e0e0e0;
+    --tagline-color: #b0b0b0;
+    --dropbtn-bg-color: #555;
+    --dropbtn-text-color: #e0e0e0;
+    --modal-placeholder-color: #b0b0b0;
+    --modal-input-color: #e0e0e0;
+    --calendar-icon-color: #e0e0e0;
+    --deadline-text-color: #e0e0e0;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--primary-bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background-color: var(--header-bg-color);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--logo-color);
+    transition: color 0.3s ease;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 22px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: var(--dropbtn-bg-color);
+    color: var(--dropbtn-text-color);
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--card-bg-color);
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    right: 0;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 40px 0;
+}
+
+.add-task-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-task-button:hover {
+    background-color: #d0d0d0;
+}
+
+body.dark-theme .add-task-button:hover {
+    background-color: #666;
+}
+
+.add-task-button .material-icons {
+    font-size: 1.2em;
+}
+
+.my-tasks-section {
+    background-color: var(--card-bg-color);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.my-tasks-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--light-text-color);
+    transition: color 0.3s ease;
+}
+
+.task-list {
+    list-style: none;
+}
+
+.task-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
+}
+
+.task-list li:last-child {
+    border-bottom: none;
+}
+
+.task-list label {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.task-list input[type="checkbox"] {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--checkbox-border);
+    border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    top: -1px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.task-list input[type="checkbox"]:checked {
+    background-color: #6a6a6a;
+    border-color: #6a6a6a;
+}
+
+.task-list input[type="checkbox"]:checked::after {
+    content: '\2713';
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.delete-task {
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.delete-task:hover {
+    color: #ff3838;
+}
+
+.footer {
+    background-color: var(--footer-bg-color);
+    padding: 20px 0;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.footer .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.footer-logo {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin: 0;
+    color: var(--logo-color);
+    transition: color 0.3s ease;
+}
+
+.tagline {
+    font-size: 0.9em;
+    opacity: 0.9;
+    margin: 0;
+    color: var(--tagline-color);
+    transition: color 0.3s ease;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-title-container {
+    background-color: var(--button-bg-color);
+    border-radius: 20px;
+    padding: 8px 15px;
+    flex-grow: 1;
+    margin-right: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-task-input {
+    border: none;
+    background: transparent;
+    font-size: 1.2em;
+    color: var(--modal-input-color);
+    outline: none;
+    width: 100%;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.modal-task-input::placeholder {
+    color: var(--modal-placeholder-color);
+    transition: color 0.3s ease;
+}
+
+.calendar-icon {
+    font-size: 2em;
+    color: var(--calendar-icon-color);
+    transition: color 0.3s ease;
+}
+
+.modal-body {
+    padding-top: 10px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.checkbox-label {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--checkbox-border);
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input[type="checkbox"] {
+    display: none;
+}
+
+.input-group input[type="checkbox"]:checked + .checkbox-label {
+    background-color: #6a6a6a;
+    border-color: #6a6a6a;
+}
+
+.input-group input[type="checkbox"]:checked::after {
+    content: '\2713';
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input-line-container {
+    flex-grow: 1;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.input-label {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    font-size: 0.85em;
+    color: var(--light-text-color);
+    transition: color 0.3s ease;
+}
+
+.input-line {
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    padding: 5px 0;
+    font-size: 1em;
+    outline: none;
+    background-color: transparent;
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.input-line:focus {
+    border-color: #666;
+}
+
+.task-deadline {
+    font-size: 0.9em;
+    color: var(--light-text-color);
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.close-button {
+    font-size: 2em;
+    color: var(--light-text-color);
+    cursor: pointer;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: var(--text-color);
+}
+
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 1.6em;
+    }
+
+    .dropbtn {
+        padding: 6px 10px;
+        font-size: 15px;
+    }
+
+    .add-task-button {
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+
+    .my-tasks-section {
+        padding: 25px;
+    }
+
+    .my-tasks-section h2 {
+        font-size: 1.4em;
+    }
+
+    .task-list label {
+        font-size: 1em;
+    }
+
+    .delete-task {
+        font-size: 1.4em;
+    }
+
+    .modal-content {
+        max-width: 450px;
+    }
+
+    .modal-task-input {
+        font-size: 1.1em;
+    }
+
+    .calendar-icon {
+        font-size: 1.8em;
+    }
+
+    .input-label {
+        font-size: 0.8em;
+    }
+
+    .input-line {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header .container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .header-controls {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    .add-task-button {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .my-tasks-section {
+        padding: 20px;
+    }
+
+    .my-tasks-section h2 {
+        font-size: 1.3em;
+        text-align: center;
+    }
+
+    .task-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 15px 0;
+    }
+
+    .task-list label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .delete-task {
+        align-self: flex-end;
+        margin-left: 0;
+        margin-right: 5px;
+    }
+
+    .task-list input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .modal-header {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+        align-items: flex-end;
+        position: relative;
+    }
+
+    .modal-title-container {
+        order: 1;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .calendar-icon {
+        order: 2;
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .close-button {
+        order: 0;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        margin: 0;
+        background-color: var(--card-bg-color);
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .checkbox-label {
+        margin-bottom: 10px;
+    }
+
+    .input-line-container {
+        width: 100%;
+    }
+
+    .input-label {
+        position: static;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+
+    .footer .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-logo {
+        font-size: 1.3em;
+    }
+
+    .tagline {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.3em;
+    }
+
+    .dropbtn {
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+
+    .switch {
+        width: 35px;
+        height: 20px;
+    }
+
+    .slider:before {
+        height: 16px;
+        width: 16px;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(15px);
+        -ms-transform: translateX(15px);
+        transform: translateX(15px);
+    }
+
+    .add-task-button {
+        font-size: 0.9em;
+    }
+
+    .my-tasks-section h2 {
+        font-size: 1.2em;
+    }
+
+    .task-list label {
+        font-size: 0.95em;
+    }
+
+    .delete-task {
+        font-size: 1.3em;
+    }
+
+    .modal-task-input {
+        font-size: 1em;
+    }
+
+    .calendar-icon {
+        font-size: 1.6em;
+    }
+
+    .input-line {
+        font-size: 0.9em;
+    }
+}
